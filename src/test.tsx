@@ -13,13 +13,14 @@ function Fragment(props: any) {
 const App = () => {
   return (
     <>
-      <h1 id="test">tsx test</h1>
-      <p class="test">tsx test</p>
+      <div id="app">
+        <h1>Hello, React Clone!</h1>
+      </div>
     </>
   );
 };
 
-const element = <div className="container">tsx test</div>;
+const element = <div className="container">Hello, React Clone!</div>;
 
 const appElement = App();
 
