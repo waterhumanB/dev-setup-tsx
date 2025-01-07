@@ -5,6 +5,10 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    "jsx": "preserve", // JSX 트랜스파일링 지원
+    "jsxFactory": "createElement", // JSX에서 사용할 함수 이름 지정
+    "jsxFragmentFactory": "Fragment", // Fragment를 위한 함수 이름 지정
+    "esModuleInterop": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -20,5 +24,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "global.d.ts"]
 }
