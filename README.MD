@@ -1,1 +1,1 @@
-TEST npx babel src/test.tsx -o dist/test.js
+TEST npx babel src/App.tsx -o dist/test.js
