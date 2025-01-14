@@ -1,16 +1,20 @@
 import { createElement, Fragment, render } from "../libs/jsx-runtime";
 import Header from "./components/Header";
-import Content from "./components/Content";
+import Counter from "./components/Counter";
 
 const App = () => {
   return (
     <>
       <Header></Header>
-      <Content></Content>
+      <Counter></Counter>
     </>
   );
 };
 
-const rootElement = document.getElementById("root")!;
+const rootElement = document.getElementById("app")!;
 
-render(<App />, rootElement);
+export function reRender() {
+  render(<App />, rootElement);
+}
+
+reRender();
