@@ -14,6 +14,8 @@ const App = () => {
 const rootElement = document.getElementById("app")!;
 
 export function reRender() {
+  rootElement.innerHTML = "";
+
   render(<App />, rootElement);
 }
 
