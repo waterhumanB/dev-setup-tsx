@@ -39,7 +39,7 @@ export function render(
   vNode: JSX.VirtualNode | JSX.VirtualNode[],
   container: HTMLElement
 ): void {
-  if (vNode === null) return;
+  if (vNode == null) return;
 
   if (Array.isArray(vNode)) {
     vNode.forEach((child) => render(child, container));

@@ -1,17 +1,23 @@
 import { reRender } from "../App";
 
-let state: any = null;
+let stateList: any[] = [];
+let currentIndex = 0;
 
 export const useState = (initialValue: any): [any, (newValue: any) => void] => {
-  if (state === null) {
-    state = initialValue;
+  const index = currentIndex;
+  currentIndex++;
+
+  if (stateList[index] === undefined) {
+    stateList[index] = initialValue;
   }
 
   function setState(newValue: any): void {
-    state = newValue;
+    stateList[index] = newValue;
 
     reRender();
+
+    currentIndex = 0;
   }
 
-  return [state, setState];
+  return [stateList[index], setState];
 };
