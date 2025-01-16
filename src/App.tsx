@@ -1,19 +1,22 @@
-import { createElement, Fragment } from "../libs/jsx-runtime";
+import { createElement, Fragment, render } from "../libs/jsx-runtime";
 import Header from "./components/Header";
-import Content from "./components/Content";
+import Counter from "./components/Counter";
 
 const App = () => {
   return (
     <>
       <Header></Header>
-      <Content></Content>
+      <Counter></Counter>
     </>
   );
 };
 
-const element = <div className="container">Hello, React Clone!</div>;
+const rootElement = document.getElementById("app")!;
 
-const appElement = App();
+export function reRender() {
+  rootElement.innerHTML = "";
 
-console.log(JSON.stringify(appElement, null, 2));
-console.log(element);
+  render(<App />, rootElement);
+}
+
+reRender();
