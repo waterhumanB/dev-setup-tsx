@@ -35,15 +35,14 @@ export const Fragment = (props: { children?: JSX.VirtualNode[] }) => {
   return props.children || [];
 };
 
-export function render(vNode: JSX.VirtualNode, container: HTMLElement): void {
-  if (vNode == null) {
-    return;
-  }
+export function render(
+  vNode: JSX.VirtualNode | JSX.VirtualNode[],
+  container: HTMLElement
+): void {
+  if (vNode === null) return;
 
   if (Array.isArray(vNode)) {
-    for (const child of vNode) {
-      render(child, container);
-    }
+    vNode.forEach((child) => render(child, container));
     return;
   }
 
@@ -61,7 +60,10 @@ export function render(vNode: JSX.VirtualNode, container: HTMLElement): void {
   }
 
   if (typeof node.tag === "function") {
-    const subVNode = node.tag({ ...node.props, children: node.children });
+    const subVNode = node.tag({
+      ...node.props,
+      children: node.children,
+    });
     render(subVNode, container);
     return;
   }
@@ -69,19 +71,17 @@ export function render(vNode: JSX.VirtualNode, container: HTMLElement): void {
   const el = document.createElement(node.tag);
 
   if (node.props) {
-    for (const [key, value] of Object.entries(node.props)) {
+    Object.entries(node.props).forEach(([key, value]) => {
       if (key.startsWith("on") && typeof value === "function") {
         const eventName = key.slice(2).toLowerCase();
         el.addEventListener(eventName, value as EventListener);
       } else {
         el.setAttribute(key, String(value));
       }
-    }
+    });
   }
 
-  for (const child of node.children) {
-    render(child, el);
-  }
+  node.children.forEach((child) => render(child, el));
 
   container.appendChild(el);
 }
